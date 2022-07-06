@@ -43,7 +43,15 @@ class App extends Component {
     if (this.state.navbarCnt === 0) {
       this.setState({ habits });
     } else {
-      this.setState({ navbarCnt: this.state.navbarCnt - 1, habits: habits });
+      //else navbarCnt >=1 일때의 조건이면
+      //habit.count가 0이면 그대로, 1이상이면 -1
+      if (habit.count === 0) {
+        console.log('111');
+        this.setState({ habits });
+      } else {
+        this.setState({ navbarCnt: this.state.navbarCnt - 1, habits: habits });
+        console.log('222');
+      }
     }
   };
 
