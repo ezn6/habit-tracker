@@ -33,6 +33,25 @@ class App extends Component {
     this.setState({ habits });
   };
 
+  habitForm = (e) => {
+    console.log(e.target.value);
+    const newHabit = {
+      id: Date.now(),
+      name: e.target.value,
+      count: 0,
+    };
+    return [...this.state.habits, newHabit];
+    // const habits = [...this.state.habits, newHabit];
+    // this.setState({ habits });
+    // console.log(this.state.habits);
+  };
+
+  habitAdd = (newHabit) => {
+    const habits = newHabit;
+    this.setState({ habits });
+    // console.log(this.state.habits);
+  };
+
   render() {
     const buttons = [
       this.handleIncrement,
@@ -44,7 +63,7 @@ class App extends Component {
         <Navbar
           counts={this.state.habits.filter((habit) => habit.count > 0).length}
         />
-        <HabitAddForm />
+        <HabitAddForm habitAdd={this.habitAdd} habitForm={this.habitForm} />
         <Habits habits={this.state.habits} buttons={buttons} />
       </>
     );
