@@ -38,6 +38,14 @@ class App extends Component {
     this.setState({ habits });
   };
 
+  handleReset = () => {
+    const habits = this.state.habits.map((habit) => {
+      habit.count = 0;
+      return habit;
+    });
+    this.setState({ habits });
+  };
+
   render() {
     const buttons = [
       this.handleIncrement,
@@ -50,7 +58,11 @@ class App extends Component {
           counts={this.state.habits.filter((habit) => habit.count > 0).length}
         />
         <HabitAddForm handleAdd={this.handleAdd} />
-        <Habits habits={this.state.habits} buttons={buttons} />
+        <Habits
+          habits={this.state.habits}
+          buttons={buttons}
+          handleReset={this.handleReset}
+        />
       </>
     );
   }

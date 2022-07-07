@@ -84,3 +84,9 @@ button {
   font-size: 2rem;
   color: darkred;
 }
+
+.reset {
+  background-color: green;
+  color: white;
+  font-size: large;
+}
