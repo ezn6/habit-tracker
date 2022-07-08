@@ -1,31 +1,60 @@
-import React, { PureComponent } from 'react';
+import React, { memo } from 'react';
 
-class HabitAddForm extends PureComponent {
-  inputRef = React.createRef();
-  formRef = React.createRef();
+// function HabitAddForm(props){} 과 동일
+const HabitAddForm = memo((props) => {
+  const inputRef = React.createRef();
+  const formRef = React.createRef();
 
-  onSubmit = (e) => {
+  const onSubmit = (e) => {
     e.preventDefault();
-    const name = this.inputRef.current.value;
-    name && this.props.handleAdd(name);
-    // this.inputRef.current.value = ''; // formRef가 없다면 이방법도 가능
-    this.formRef.current.reset();
+    const name = inputRef.current.value;
+    name && props.handleAdd(name);
+    // inputRef.current.value = ''; // formRef가 없다면 이방법도 가능
+    formRef.current.reset();
   };
 
-  render() {
-    console.log('habitAddForm');
-    return (
-      <form onSubmit={this.onSubmit} ref={this.formRef}>
-        <input
-          className='addForm-input'
-          type='text'
-          placeholder='Habit'
-          ref={this.inputRef}
-        ></input>
-        <button className='addForm-btn'>Add</button>
-      </form>
-    );
-  }
-}
+  console.log('habitAddForm');
+  return (
+    <form onSubmit={onSubmit} ref={formRef}>
+      <input
+        className='addForm-input'
+        type='text'
+        placeholder='Habit'
+        ref={inputRef}
+      ></input>
+      <button className='addForm-btn'>Add</button>
+    </form>
+  );
+});
 
 export default HabitAddForm;
+
+// class HabitAddForm extends Component {
+//   inputRef = React.createRef();
+//   formRef = React.createRef();
+
+//   onSubmit = (e) => {
+//     e.preventDefault();
+//     const name = this.inputRef.current.value;
+//     name && this.props.handleAdd(name);
+//     // this.inputRef.current.value = ''; // formRef가 없다면 이방법도 가능
+//     this.formRef.current.reset();
+//   };
+
+//   render() {
+//     console.log('habitAddForm');
+//     return (
+//       <form onSubmit={this.onSubmit} ref={this.formRef}>
+//         <input
+//           className='addForm-input'
+//           type='text'
+//           placeholder='Habit'
+//           ref={this.inputRef}
+//         ></input>
+//         <button className='addForm-btn'>Add</button>
+//       </form>
+//     );
+//   }
+// }
+
+// export default HabitAddForm;
